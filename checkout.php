@@ -4,14 +4,14 @@ include('includes/header.php');
 include('includes/config.php');
 // print_r($_SESSION);
 try {
-    // $sql = "SELECT customer_id FROM customer WHERE user_id = {$_SESSION['user_id']} LIMIT 1";
+    $sql = "SELECT customer_id FROM customer WHERE user_id = {$_SESSION['user_id']} LIMIT 1";
 
-    // $result = mysqli_query($conn, $sql);
-    // $row = mysqli_fetch_assoc($result);
+    $result = mysqli_query($conn, $sql);
+    $row = mysqli_fetch_assoc($result);
     mysqli_begin_transaction($conn);
     // mysqli_query($conn, 'START TRANSACTION');
-    // $customer_id = $row['customer_id'];
-    $customer_id = 1;
+    $customer_id = $row['customer_id'];
+    // $customer_id = 1;
     $q = 'INSERT INTO orderinfo(customer_id, date_placed, date_shipped,shipping) VALUES (?, NOW(), NOW(), ?)';
     $shipping = 10.00;
     // $shipvia = 1;
